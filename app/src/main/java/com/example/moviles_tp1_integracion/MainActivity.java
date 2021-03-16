@@ -10,7 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-    private DetectarUSB du;
+    private callingBroadCastReceiver du;
 
     // TUTORIAL
     // https://www.youtube.com/watch?v=pBRykMcu0lw

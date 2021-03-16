@@ -14,12 +14,13 @@ public class ChargingBroadCastReceiver extends BroadcastReceiver {
         boolean isCharging = (action.equals(intent.ACTION_POWER_CONNECTED));
         if ( isCharging ) {
             Log.d("mensaje","Cargando");
-            Toast.makeText(context,"  Se ha conectado/desconectado el USB. Se está iniciando una llamada al 911.", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "911"));
+            Toast.makeText(context,"  Se ha conectado el USB. Se está iniciando una llamada al *152#.", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "*152#"));
             //i.setData(Uri.parse("tel:" + "911"));
             context.startActivity(i);
         } else {
             Log.d("mensaje","No se está Cargando");
+            Toast.makeText(context,"USB desconectado",Toast.LENGTH_LONG).show();
         }
     }
 }
