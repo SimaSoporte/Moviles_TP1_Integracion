@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class callingBroadCastReceiver extends BroadcastReceiver {
+public class CallingBroadCastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {

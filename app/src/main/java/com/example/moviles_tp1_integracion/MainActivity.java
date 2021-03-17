@@ -10,12 +10,10 @@ import android.os.Build;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-    private callingBroadCastReceiver du;
-
     // TUTORIAL
     // https://www.youtube.com/watch?v=pBRykMcu0lw
     private IntentFilter chargingIntentFilter;
-    private ChargingBroadCastReceiver chargingBroadCastReceriver;
+    private USB_BroadCastReceiver usb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         chargingIntentFilter = new IntentFilter();
         chargingIntentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
         chargingIntentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
-        chargingBroadCastReceriver = new ChargingBroadCastReceiver();
+
 
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M
                 && checkSelfPermission(Manifest.permission.CALL_PHONE)
@@ -37,15 +35,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //du = new DetectarUSB();
-        //registerReceiver(du, new IntentFilter("android.hardware.usb.action.USB_STATE"));
-        registerReceiver(chargingBroadCastReceriver, chargingIntentFilter);
+        usb = new USB_BroadCastReceiver();
+        registerReceiver(usb, chargingIntentFilter);
+        //registerReceiver(usb, new IntentFilter("android.hardware.usb.action.USB_STATE"));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         //unregisterReceiver(du); // Detener la detección del conector USB
-        unregisterReceiver(chargingBroadCastReceriver);
+        unregisterReceiver(usb);
     }
 }
